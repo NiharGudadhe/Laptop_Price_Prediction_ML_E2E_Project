@@ -1,0 +1,287 @@
+[2026-07-14 19:29:22] INFO -  Laptop Price Prediction package initialized
+[2026-07-14 19:29:46] INFO - ======== Pipeline started ========
+[2026-07-14 19:29:46] INFO - Step 1: Data ingestion
+[2026-07-14 19:29:46] INFO - Attempting to read from MySQL
+[2026-07-14 19:29:48] WARNING - MySQL read failed: (pymysql.err.OperationalError) (1049, "Unknown database 'laptop_data'")
+(Background on this error at: https://sqlalche.me/e/20/e3q8). Falling back to CSV.
+[2026-07-14 19:29:48] ERROR - Pipeline failed
+Traceback (most recent call last):
+  File "C:\Users\Dell\Desktop\ML_E2E_Project\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 144, in __init__
+    self._dbapi_connection = engine.raw_connection()
+                             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Desktop\ML_E2E_Project\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 3319, in raw_connection
+    return self.pool.connect()
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Desktop\ML_E2E_Project\venv\Lib\site-packages\sqlalchemy\pool\base.py", line 448, in connect
+    return _ConnectionFairy._checkout(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Desktop\ML_E2E_Project\venv\Lib\site-packages\sqlalchemy\pool\base.py", line 1272, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Desktop\ML_E2E_Project\venv\Lib\site-packages\sqlalchemy\pool\base.py", line 712, in checkout
+    rec = pool._do_get()
+          ^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Desktop\ML_E2E_Project\venv\Lib\site-packages\sqlalchemy\pool\impl.py", line 178, in _do_get
+    with util.safe_reraise():
+  File "C:\Users\Dell\Desktop\ML_E2E_Project\venv\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 122, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\Dell\Desktop\ML_E2E_Project\venv\Lib\site-packages\sqlalchemy\pool\impl.py", line 176, in _do_get
+    return self._create_connection()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Desktop\ML_E2E_Project\venv\Lib\site-packages\sqlalchemy\pool\base.py", line 389, in _create_connection
+    return _ConnectionRecord(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Desktop\ML_E2E_Project\venv\Lib\site-packages\sqlalchemy\pool\base.py", line 674, in __init__
+    self.__connect()
+  File "C:\Users\Dell\Desktop\ML_E2E_Project\venv\Lib\site-packages\sqlalchemy\pool\base.py", line 900, in __connect
+    with util.safe_reraise():
+  File "C:\Users\Dell\Desktop\ML_E2E_Project\venv\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 122, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\Dell\Desktop\ML_E2E_Project\venv\Lib\site-packages\sqlalchemy\pool\base.py", line 896, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Desktop\ML_E2E_Project\venv\Lib\site-packages\sqlalchemy\engine\create.py", line 667, in connect
+    return dialect.connect(*cargs_tup, **cparams)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Desktop\ML_E2E_Project\venv\Lib\site-packages\sqlalchemy\engine\default.py", line 630, in connect
+    return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Desktop\ML_E2E_Project\venv\Lib\site-packages\pymysql\connections.py", line 372, in __init__
+    self.connect()
+  File "C:\Users\Dell\Desktop\ML_E2E_Project\venv\Lib\site-packages\pymysql\connections.py", line 702, in connect
+    self._request_authentication()
+  File "C:\Users\Dell\Desktop\ML_E2E_Project\venv\Lib\site-packages\pymysql\connections.py", line 1022, in _request_authentication
+    auth_packet = _auth.caching_sha2_password_auth(self, auth_packet)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Desktop\ML_E2E_Project\venv\Lib\site-packages\pymysql\_auth.py", line 245, in caching_sha2_password_auth
+    pkt = conn._read_packet()
+          ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Desktop\ML_E2E_Project\venv\Lib\site-packages\pymysql\connections.py", line 803, in _read_packet
+    packet.raise_for_error()
+  File "C:\Users\Dell\Desktop\ML_E2E_Project\venv\Lib\site-packages\pymysql\protocol.py", line 219, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "C:\Users\Dell\Desktop\ML_E2E_Project\venv\Lib\site-packages\pymysql\err.py", line 154, in raise_mysql_exception
+    raise errorclass(errno, errval, sqlstate=sqlstate)
+pymysql.err.OperationalError: (1049, "Unknown database 'laptop_data'")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Dell\Desktop\ML_E2E_Project\laptop_price\components\data_ingestion.py", line 28, in ingest_data
+    df = pd.read_sql_table(table, con=engine)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Desktop\ML_E2E_Project\venv\Lib\site-packages\pandas\io\sql.py", line 354, in read_sql_table
+    with pandasSQL_builder(con, schema=schema, need_transaction=True) as pandas_sql:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Desktop\ML_E2E_Project\venv\Lib\site-packages\pandas\io\sql.py", line 908, in pandasSQL_builder
+    return SQLDatabase(con, schema, need_transaction)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Desktop\ML_E2E_Project\venv\Lib\site-packages\pandas\io\sql.py", line 1649, in __init__
+    con = self.exit_stack.enter_context(con.connect())
+                                        ^^^^^^^^^^^^^
+  File "C:\Users\Dell\Desktop\ML_E2E_Project\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 3295, in connect
+    return self._connection_cls(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Desktop\ML_E2E_Project\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 146, in __init__
+    Connection._handle_dbapi_exception_noconnection(
+  File "C:\Users\Dell\Desktop\ML_E2E_Project\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2450, in _handle_dbapi_exception_noconnection
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\Dell\Desktop\ML_E2E_Project\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 144, in __init__
+    self._dbapi_connection = engine.raw_connection()
+                             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Desktop\ML_E2E_Project\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 3319, in raw_connection
+    return self.pool.connect()
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Desktop\ML_E2E_Project\venv\Lib\site-packages\sqlalchemy\pool\base.py", line 448, in connect
+    return _ConnectionFairy._checkout(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Desktop\ML_E2E_Project\venv\Lib\site-packages\sqlalchemy\pool\base.py", line 1272, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Desktop\ML_E2E_Project\venv\Lib\site-packages\sqlalchemy\pool\base.py", line 712, in checkout
+    rec = pool._do_get()
+          ^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Desktop\ML_E2E_Project\venv\Lib\site-packages\sqlalchemy\pool\impl.py", line 178, in _do_get
+    with util.safe_reraise():
+  File "C:\Users\Dell\Desktop\ML_E2E_Project\venv\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 122, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\Dell\Desktop\ML_E2E_Project\venv\Lib\site-packages\sqlalchemy\pool\impl.py", line 176, in _do_get
+    return self._create_connection()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Desktop\ML_E2E_Project\venv\Lib\site-packages\sqlalchemy\pool\base.py", line 389, in _create_connection
+    return _ConnectionRecord(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Desktop\ML_E2E_Project\venv\Lib\site-packages\sqlalchemy\pool\base.py", line 674, in __init__
+    self.__connect()
+  File "C:\Users\Dell\Desktop\ML_E2E_Project\venv\Lib\site-packages\sqlalchemy\pool\base.py", line 900, in __connect
+    with util.safe_reraise():
+  File "C:\Users\Dell\Desktop\ML_E2E_Project\venv\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 122, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\Dell\Desktop\ML_E2E_Project\venv\Lib\site-packages\sqlalchemy\pool\base.py", line 896, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Desktop\ML_E2E_Project\venv\Lib\site-packages\sqlalchemy\engine\create.py", line 667, in connect
+    return dialect.connect(*cargs_tup, **cparams)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Desktop\ML_E2E_Project\venv\Lib\site-packages\sqlalchemy\engine\default.py", line 630, in connect
+    return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Desktop\ML_E2E_Project\venv\Lib\site-packages\pymysql\connections.py", line 372, in __init__
+    self.connect()
+  File "C:\Users\Dell\Desktop\ML_E2E_Project\venv\Lib\site-packages\pymysql\connections.py", line 702, in connect
+    self._request_authentication()
+  File "C:\Users\Dell\Desktop\ML_E2E_Project\venv\Lib\site-packages\pymysql\connections.py", line 1022, in _request_authentication
+    auth_packet = _auth.caching_sha2_password_auth(self, auth_packet)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Desktop\ML_E2E_Project\venv\Lib\site-packages\pymysql\_auth.py", line 245, in caching_sha2_password_auth
+    pkt = conn._read_packet()
+          ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Desktop\ML_E2E_Project\venv\Lib\site-packages\pymysql\connections.py", line 803, in _read_packet
+    packet.raise_for_error()
+  File "C:\Users\Dell\Desktop\ML_E2E_Project\venv\Lib\site-packages\pymysql\protocol.py", line 219, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "C:\Users\Dell\Desktop\ML_E2E_Project\venv\Lib\site-packages\pymysql\err.py", line 154, in raise_mysql_exception
+    raise errorclass(errno, errval, sqlstate=sqlstate)
+sqlalchemy.exc.OperationalError: (pymysql.err.OperationalError) (1049, "Unknown database 'laptop_data'")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Dell\Desktop\ML_E2E_Project\laptop_price\components\data_ingestion.py", line 32, in ingest_data
+    df = pd.read_csv('/mnt/data/laptop_data.csv')
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Desktop\ML_E2E_Project\venv\Lib\site-packages\pandas\io\parsers\readers.py", line 873, in read_csv
+    return _read(filepath_or_buffer, kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Desktop\ML_E2E_Project\venv\Lib\site-packages\pandas\io\parsers\readers.py", line 300, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Desktop\ML_E2E_Project\venv\Lib\site-packages\pandas\io\parsers\readers.py", line 1645, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Desktop\ML_E2E_Project\venv\Lib\site-packages\pandas\io\parsers\readers.py", line 1904, in _make_engine
+    self.handles = get_handle(
+                   ^^^^^^^^^^^
+  File "C:\Users\Dell\Desktop\ML_E2E_Project\venv\Lib\site-packages\pandas\io\common.py", line 930, in get_handle
+    handle = open(
+             ^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/data/laptop_data.csv'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Dell\Desktop\ML_E2E_Project\laptop_price\pipeline\training_pipeline.py", line 43, in run_pipeline
+    ingestion_artifact: DataIngestionArtifact = ingest_data()
+                                                ^^^^^^^^^^^^^
+  File "C:\Users\Dell\Desktop\ML_E2E_Project\laptop_price\components\data_ingestion.py", line 39, in ingest_data
+    raise PricePredictorException(f"Data ingestion failed: {e}")
+laptop_price.exception.PricePredictorException: Data ingestion failed: [Errno 2] No such file or directory: '/mnt/data/laptop_data.csv'
+[2026-07-14 19:52:22] INFO -  Laptop Price Prediction package initialized
+[2026-07-14 19:52:26] INFO - ======== Pipeline started ========
+[2026-07-14 19:52:26] INFO - Step 1: Data ingestion
+[2026-07-14 19:52:26] INFO - Attempting to read from MySQL
+[2026-07-14 19:52:26] INFO - Read data from MySQL successfully
+[2026-07-14 19:52:26] INFO - Raw data saved at: artifacts\raw\laptop_raw.csv
+[2026-07-14 19:52:26] INFO - Step 2: Data validation (basic checks)
+[2026-07-14 19:52:26] ERROR - Pipeline failed
+Traceback (most recent call last):
+  File "C:\Users\Dell\Desktop\ML_E2E_Project\laptop_price\pipeline\training_pipeline.py", line 59, in run_pipeline
+    raise PricePredictorException(f"Target column '{TARGET}' not found in raw data. Columns: {df.columns.tolist()}")
+laptop_price.exception.PricePredictorException: Target column 'Price_INR' not found in raw data. Columns: ['﻿', 'Company', 'TypeName', 'Inches', 'ScreenResolution', 'Cpu', 'Ram', 'Memory', 'Gpu', 'OpSys', 'Weight', 'Price']
+[2026-07-14 20:10:11] INFO -  Laptop Price Prediction package initialized
+[2026-07-14 20:10:16] INFO - ======== Pipeline started ========
+[2026-07-14 20:10:16] INFO - Step 1: Data ingestion
+[2026-07-14 20:10:16] INFO - Attempting to read from MySQL
+[2026-07-14 20:10:17] INFO - Read data from MySQL successfully
+[2026-07-14 20:10:17] INFO - Raw data saved at: artifacts\raw\laptop_raw.csv
+[2026-07-14 20:10:17] INFO - Step 2: Data validation (basic checks)
+[2026-07-14 20:10:17] INFO - Missing value ratios (top 10):
+{'Secondary_Storage': 0.8116, 'SKU': 0.0, 'Model': 0.0, 'Brand': 0.0, 'CPU': 0.0, 'RAM': 0.0, 'Primary_Storage': 0.0, 'GPU': 0.0, 'Screen_Size': 0.0, 'Resolution': 0.0}
+[2026-07-14 20:10:17] WARNING - Columns with > 30% missing: {'Secondary_Storage': 0.8116}
+[2026-07-14 20:10:17] INFO - Dropped high-NA columns and continuing: ['Secondary_Storage']
+[2026-07-14 20:10:17] INFO - Data validation passed (validate() ok).
+[2026-07-14 20:10:17] INFO - Saved possibly-updated raw dataframe to artifacts\raw\laptop_raw.csv
+[2026-07-14 20:10:17] INFO - Step 3: Data transformation
+[2026-07-14 20:10:17] INFO - Dropped identifier column: SKU
+[2026-07-14 20:10:17] INFO - Dropped identifier column: Model
+[2026-07-14 20:10:17] INFO - Numeric cols: ['Screen_Size', 'Weight_kg', 'Battery_Hours']
+[2026-07-14 20:10:17] INFO - Categorical cols: ['Brand', 'CPU', 'RAM', 'Primary_Storage', 'GPU', 'Resolution', 'OS', 'Type', 'Touchscreen']
+[2026-07-14 20:10:17] INFO - Fitting preprocessor on training features...
+[2026-07-14 20:10:17] INFO - Saved preprocessor to: artifacts\transformed\preprocessor.joblib
+[2026-07-14 20:10:17] INFO - Saved artifacts/transformed/train.csv and test.csv
+[2026-07-14 20:10:17] INFO - Saved artifacts/transformed/feature_list.json
+[2026-07-14 20:10:17] INFO - Transformer saved at: artifacts\transformed\preprocessor.joblib
+[2026-07-14 20:10:17] INFO - Step 4: Model training
+[2026-07-14 20:10:17] INFO - Loading transformed train/test CSVs
+[2026-07-14 20:10:17] INFO - Loading preprocessor from: artifacts\transformed\preprocessor.joblib
+[2026-07-14 20:10:17] INFO - Transforming features using preprocessor
+[2026-07-14 20:10:17] INFO - Training LinearRegression (baseline)
+[2026-07-14 20:10:17] INFO - LinearRegression evaluation -> RMSE: 8243.5040, MAE: 5749.0160, R2: 0.9650
+[2026-07-14 20:10:17] INFO - Training RandomForestRegressor
+[2026-07-14 20:10:19] INFO - RandomForest evaluation -> RMSE: 9166.6615, MAE: 6746.8086, R2: 0.9568
+[2026-07-14 20:10:19] INFO - Selected best model: LinearRegression with RMSE = 8243.5040
+[2026-07-14 20:10:19] INFO - Saved best model to: artifacts\model\best_model.joblib
+[2026-07-14 20:10:19] INFO - ModelTrainerArtifact created -> train_score: 0.9656, test_score: 0.9650
+[2026-07-14 20:10:19] INFO - Model saved at: artifacts\model\best_model.joblib
+[2026-07-14 20:10:19] INFO - Train score (R2): 0.9656  Test score (R2): 0.9650
+[2026-07-14 20:10:19] INFO - Step 5: Model evaluation
+[2026-07-14 20:10:19] INFO - Starting model evaluation...
+[2026-07-14 20:10:19] INFO - Loaded model from artifacts\model\best_model.joblib and preprocessor from artifacts\transformed\preprocessor.joblib
+[2026-07-14 20:10:19] INFO - Model Evaluation Completed \u2192 RMSE: 8243.5040, MAE: 5749.0160, R2: 0.9650
+[2026-07-14 20:10:19] INFO - Metrics saved to artifacts\model\model_metrics.json
+[2026-07-14 20:10:19] INFO - Evaluation metrics: {'RMSE': 8243.503973813784, 'MAE': 5749.0160413520925, 'R2': 0.9650240530089602}
+[2026-07-14 20:10:19] INFO - Step 6: Model pushing
+[2026-07-14 20:10:19] INFO - Pushed model version to: prediction\models\models\best_model_20260714_201019.joblib
+[2026-07-14 20:10:19] INFO - Copied new model to active path: prediction\models\models\current_model.joblib
+[2026-07-14 20:10:19] INFO - Model push info: {'versioned_path': 'prediction\\models\\models\\best_model_20260714_201019.joblib', 'active_path': 'prediction\\models\\models\\current_model.joblib'}
+[2026-07-14 20:10:19] INFO - Pipeline summary written to: artifacts\pipeline_summary.json
+[2026-07-14 20:10:19] INFO - ======== Pipeline finished successfully ========
+[2026-07-14 20:15:26] INFO -  Laptop Price Prediction package initialized
+[2026-07-14 20:15:30] INFO - ======== Pipeline started ========
+[2026-07-14 20:15:30] INFO - Step 1: Data ingestion
+[2026-07-14 20:15:30] INFO - Attempting to read from MySQL
+[2026-07-14 20:15:31] INFO - Read data from MySQL successfully
+[2026-07-14 20:15:31] INFO - Raw data saved at: artifacts\raw\laptop_raw.csv
+[2026-07-14 20:15:31] INFO - Step 2: Data validation (basic checks)
+[2026-07-14 20:15:31] INFO - Missing value ratios (top 10):
+{'Secondary_Storage': 0.8116, 'SKU': 0.0, 'Model': 0.0, 'Brand': 0.0, 'CPU': 0.0, 'RAM': 0.0, 'Primary_Storage': 0.0, 'GPU': 0.0, 'Screen_Size': 0.0, 'Resolution': 0.0}
+[2026-07-14 20:15:31] WARNING - Columns with > 30% missing: {'Secondary_Storage': 0.8116}
+[2026-07-14 20:15:31] INFO - Dropped high-NA columns and continuing: ['Secondary_Storage']
+[2026-07-14 20:15:31] INFO - Data validation passed (validate() ok).
+[2026-07-14 20:15:31] INFO - Saved possibly-updated raw dataframe to artifacts\raw\laptop_raw.csv
+[2026-07-14 20:15:31] INFO - Step 3: Data transformation
+[2026-07-14 20:15:31] INFO - Dropped identifier column: SKU
+[2026-07-14 20:15:31] INFO - Dropped identifier column: Model
+[2026-07-14 20:15:31] INFO - Numeric cols: ['Screen_Size', 'Weight_kg', 'Battery_Hours']
+[2026-07-14 20:15:31] INFO - Categorical cols: ['Brand', 'CPU', 'RAM', 'Primary_Storage', 'GPU', 'Resolution', 'OS', 'Type', 'Touchscreen']
+[2026-07-14 20:15:31] INFO - Fitting preprocessor on training features...
+[2026-07-14 20:15:31] INFO - Saved preprocessor to: artifacts\transformed\preprocessor.joblib
+[2026-07-14 20:15:31] INFO - Saved artifacts/transformed/train.csv and test.csv
+[2026-07-14 20:15:31] INFO - Saved artifacts/transformed/feature_list.json
+[2026-07-14 20:15:31] INFO - Transformer saved at: artifacts\transformed\preprocessor.joblib
+[2026-07-14 20:15:31] INFO - Step 4: Model training
+[2026-07-14 20:15:31] INFO - Loading transformed train/test CSVs
+[2026-07-14 20:15:31] INFO - Loading preprocessor from: artifacts\transformed\preprocessor.joblib
+[2026-07-14 20:15:31] INFO - Transforming features using preprocessor
+[2026-07-14 20:15:31] INFO - Training LinearRegression (baseline)
+[2026-07-14 20:15:31] INFO - LinearRegression evaluation -> RMSE: 8243.5040, MAE: 5749.0160, R2: 0.9650
+[2026-07-14 20:15:31] INFO - Training RandomForestRegressor
+[2026-07-14 20:15:33] INFO - RandomForest evaluation -> RMSE: 9166.6615, MAE: 6746.8086, R2: 0.9568
+[2026-07-14 20:15:33] INFO - Selected best model: LinearRegression with RMSE = 8243.5040
+[2026-07-14 20:15:33] INFO - Saved best model to: artifacts\model\best_model.joblib
+[2026-07-14 20:15:33] INFO - ModelTrainerArtifact created -> train_score: 0.9656, test_score: 0.9650
+[2026-07-14 20:15:33] INFO - Model saved at: artifacts\model\best_model.joblib
+[2026-07-14 20:15:33] INFO - Train score (R2): 0.9656  Test score (R2): 0.9650
+[2026-07-14 20:15:33] INFO - Step 5: Model evaluation
+[2026-07-14 20:15:33] INFO - Starting model evaluation...
+[2026-07-14 20:15:33] INFO - Loaded model from artifacts\model\best_model.joblib and preprocessor from artifacts\transformed\preprocessor.joblib
+[2026-07-14 20:15:33] INFO - Model Evaluation Completed \u2192 RMSE: 8243.5040, MAE: 5749.0160, R2: 0.9650
+[2026-07-14 20:15:33] INFO - Metrics saved to artifacts\model\model_metrics.json
+[2026-07-14 20:15:33] INFO - Evaluation metrics: {'RMSE': 8243.503973813784, 'MAE': 5749.0160413520925, 'R2': 0.9650240530089602}
+[2026-07-14 20:15:33] INFO - Step 6: Model pushing
+[2026-07-14 20:15:33] INFO - Pushed model version to: prediction\models\models\best_model_20260714_201533.joblib
+[2026-07-14 20:15:33] INFO - Copied new model to active path: prediction\models\models\current_model.joblib
+[2026-07-14 20:15:33] INFO - Model push info: {'versioned_path': 'prediction\\models\\models\\best_model_20260714_201533.joblib', 'active_path': 'prediction\\models\\models\\current_model.joblib'}
+[2026-07-14 20:15:33] INFO - Pipeline summary written to: artifacts\pipeline_summary.json
+[2026-07-14 20:15:33] INFO - ======== Pipeline finished successfully ========
