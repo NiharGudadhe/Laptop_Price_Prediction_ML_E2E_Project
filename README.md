@@ -1,7 +1,12 @@
-End-to-End Laptop Price Prediction ML Project
-An end-to-end Machine Learning web application designed to predict laptop prices based on various hardware specifications and features. This project covers the entire ML lifecycle—from data ingestion and preprocessing to model training, evaluation, and deployment via a web interface.
+# End-to-End Laptop Price Prediction ML Project 💻
 
-🛠️ Project Structure
+An end-to-end Machine Learning web application designed to predict laptop prices based on various hardware specifications and features. This project covers the entire ML lifecycle—from data ingestion and preprocessing to model training, evaluation, and deployment via an interactive web interface.
+
+---
+
+## 🛠️ Project Structure
+
+```text
 ├── .vscode/               # VS Code configuration settings
 ├── artifacts/             # Saved model artifacts, transformers, and preprocessed data
 ├── laptop_price/          # Source package containing core ML pipeline scripts
@@ -15,11 +20,5 @@ An end-to-end Machine Learning web application designed to predict laptop prices
 ├── requirements.txt       # Project dependencies
 └── README.md              # Project Documentation
 
-🚀 Tech Stack & Libraries
-Programming Language: Python
 
-Machine Learning & Data Processing: Scikit-Learn, Pandas, NumPy
-
-Web Framework: Flask / FastAPI (via app.py)
-
-Environment Management: Python Virtual Environment (venv)
+🚀 Tech Stack & LibrariesProgramming Language: PythonMachine Learning & Data Processing: Scikit-Learn, Pandas, NumPyWeb Framework: Flask / FastAPI (via app.py)Environment Management: Python Virtual Environment (venv)
