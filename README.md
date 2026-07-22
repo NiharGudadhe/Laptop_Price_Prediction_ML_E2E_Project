@@ -21,4 +21,4 @@ An end-to-end Machine Learning web application designed to predict laptop prices
 └── README.md              # Project Documentation
 
 
-🚀 Tech Stack & LibrariesProgramming Language: PythonMachine Learning & Data Processing: Scikit-Learn, Pandas, NumPyWeb Framework: Flask / FastAPI (via app.py)Environment Management: Python Virtual Environment (venv)
+## 🚀 Tech Stack & LibrariesProgramming Language: PythonMachine Learning & Data Processing: Scikit-Learn, Pandas, NumPyWeb Framework: Flask / FastAPI (via app.py)Environment Management: Python Virtual Environment (venv)
